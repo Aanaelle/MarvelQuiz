@@ -34,10 +34,10 @@ public class Quiz implements ActionListener
     private JTextField txtfield = new JTextField();
     private JTextArea  txtArea  = new JTextArea();
 
-    private JButton    btnA     = new JButton();
-    private JButton    btnB     = new JButton();
-    private JButton    btnC     = new JButton();
-    private JButton    btnD     = new JButton();
+    private JButton    btnA     = new JButton("A");
+    private JButton    btnB     = new JButton("B");
+    private JButton    btnC     = new JButton("C");
+    private JButton    btnD     = new JButton("D");
 
     private JLabel     lblA     = new JLabel();
     private JLabel     lblB     = new JLabel();
@@ -81,9 +81,31 @@ public class Quiz implements ActionListener
 
 
         //création des boutons
-        
-        
+        this.btnA.setBounds(0, 100, 100,100);
+        this.btnA.setFont(new Font("MV Boli", Font.BOLD, 35));
+        this.btnA.setFocusable(false);
+        this.btnA.addActionListener(this);
 
+        this.btnB.setBounds(0, 200, 100,100);
+        this.btnB.setFont(new Font("MV Boli", Font.BOLD, 35));
+        this.btnB.setFocusable(false);
+        this.btnB.addActionListener(this);
+
+        this.btnC.setBounds(0, 300, 100,100);
+        this.btnC.setFont(new Font("MV Boli", Font.BOLD, 35));
+        this.btnC.setFocusable(false);
+        this.btnC.addActionListener(this);
+
+        this.btnD.setBounds(0, 400, 100,100);
+        this.btnD.setFont(new Font("MV Boli", Font.BOLD, 35));
+        this.btnD.setFocusable(false);
+        this.btnD.addActionListener(this);
+
+        
+        this.frame.add(this.btnA);
+        this.frame.add(this.btnB);
+        this.frame.add(this.btnC);
+        this.frame.add(this.btnD);
         this.frame.add(this.txtArea);
         this.frame.add(this.txtfield);
         this.frame.setVisible(true);
