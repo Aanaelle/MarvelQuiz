@@ -101,7 +101,35 @@ public class Quiz implements ActionListener
         this.btnD.setFocusable(false);
         this.btnD.addActionListener(this);
 
+
+        //création des labels
+        this.lblA.setBounds(125, 100, 500, 100);
+        this.lblA.setBackground(new Color(50,50,50));
+        this.lblA.setForeground(new Color(45,21,140));
+        this.lblA.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
         
+        this.lblB.setBounds(125, 200, 500, 100);
+        this.lblB.setBackground(new Color(50,50,50));
+        this.lblB.setForeground(new Color(45,21,140));
+        this.lblB.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
+
+        this.lblC.setBounds(125, 300, 500, 100);
+        this.lblC.setBackground(new Color(50,50,50));
+        this.lblC.setForeground(new Color(45,21,140));
+        this.lblC.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
+
+        this.lblD.setBounds(125, 400, 500, 100);
+        this.lblD.setBackground(new Color(50,50,50));
+        this.lblD.setForeground(new Color(45,21,140));
+        this.lblD.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
+
+
+
+        //positionnement des composants
+        this.frame.add(this.lblA);
+        this.frame.add(this.lblB);
+        this.frame.add(this.lblC);
+        this.frame.add(this.lblD);
         this.frame.add(this.btnA);
         this.frame.add(this.btnB);
         this.frame.add(this.btnC);
