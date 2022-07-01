@@ -135,6 +135,15 @@ public class Quiz implements ActionListener
         this.lblSec.setText(String.valueOf(this.seconds));
 
 
+        //label temps
+        this.lblTime.setBounds(535,475,100,25);
+        this.lblTime.setBackground(new Color(50,50,50));
+        this.lblTime.setForeground(new Color(255,150,23));
+        this.lblTime.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+        this.lblTime.setHorizontalAlignment(JTextField.CENTER);
+
+
+
         //positionnement des composants
         this.frame.add(this.lblSec);
 
