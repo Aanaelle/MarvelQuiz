@@ -107,7 +107,8 @@ public class Quiz implements ActionListener
         this.lblA.setBackground(new Color(50,50,50));
         this.lblA.setForeground(new Color(45,21,140));
         this.lblA.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
-        
+
+
         this.lblB.setBounds(125, 200, 500, 100);
         this.lblB.setBackground(new Color(50,50,50));
         this.lblB.setForeground(new Color(45,21,140));
@@ -123,19 +124,33 @@ public class Quiz implements ActionListener
         this.lblD.setForeground(new Color(45,21,140));
         this.lblD.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
 
+        //timer
+        this.lblSec.setBounds(535,510,100,100);
+        this.lblSec.setBackground(new Color(25,25,25));
+        this.lblSec.setForeground(new Color(255,10,10));
+        this.lblSec.setFont(new Font("Times New Roman", Font.BOLD, 60));
+        this.lblSec.setBorder(BorderFactory.createBevelBorder(1));
+        this.lblSec.setOpaque(true);
+        this.lblSec.setHorizontalAlignment(JTextField.CENTER);
+        this.lblSec.setText(String.valueOf(this.seconds));
 
 
         //positionnement des composants
+        this.frame.add(this.lblSec);
+
         this.frame.add(this.lblA);
         this.frame.add(this.lblB);
         this.frame.add(this.lblC);
         this.frame.add(this.lblD);
+
         this.frame.add(this.btnA);
         this.frame.add(this.btnB);
         this.frame.add(this.btnC);
         this.frame.add(this.btnD);
+
         this.frame.add(this.txtArea);
         this.frame.add(this.txtfield);
+
         this.frame.setVisible(true);
     }
 
