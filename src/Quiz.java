@@ -1,7 +1,6 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
 
 public class Quiz implements ActionListener
 {
@@ -9,21 +8,23 @@ public class Quiz implements ActionListener
                                     "Quelle pierre se trouve sur Vision ?",
                                     "De qui Loki est-il le frere ?",
                                     "Comment s'appelle la planete de Thor ?",
-                                    "Dans quelle team se trouve Black Widow(Natasha) ?"
+                                    "Dans quelle team se trouve Black Widow(Natasha) ?",
+                                    "Comment se nomme le marteau de Thor ?"
                                    };
     private String[][] options   = {
                                     {"Temps", "Esprit", "Realite", "Espace" },
                                     {"Tony Stark", "Clint Barton", "Thor", "Heimdall"},
                                     {"Asgard", "Sakaar", "Terre", "Xandar"},
-                                    {"Iron Man", "Captain America", "Les deux", "Aucune"}
+                                    {"Iron Man", "Captain America", "Les deux", "Aucune"},
+                                    {"Mjölnir", "MewMew", "Jonathan", "Miljonir"}
                                    };
     private char[]     answers = {
                                 'B', 
                                 'C', 
                                 'A',
-                                'C'
+                                'C',
+                                'A'
                                  };
-    private char guess;
     private char answer;
     private int  index;
     private int  correctGuesses = 0;
@@ -50,6 +51,21 @@ public class Quiz implements ActionListener
 
     private JTextField nbRight  = new JTextField();
     private JTextField pourcent = new JTextField();
+
+    Timer timer = new Timer(1000, new ActionListener() 
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            seconds--;
+            lblSec.setText(String.valueOf(seconds));
+            if (seconds <=0)
+            {
+                displayAnswer();
+            }
+        }
+    });
 
 
     public Quiz()
@@ -181,26 +197,155 @@ public class Quiz implements ActionListener
         this.frame.add(this.txtfield);
 
         this.frame.setVisible(true);
+
+        this.nextQuestion();
     }
 
     public void nextQuestion()
     {
+        if(this.index >= this.totalQuestions)
+        {
+            this.results();
+        }
+        else
+        {
+            this.txtfield.setText("Question " + (this.index+1));
+            this.txtArea.setText(questions[this.index]);
+            this.lblA.setText(options[index][0]);
+            this.lblB.setText(options[index][1]);
+            this.lblC.setText(options[index][2]);
+            this.lblD.setText(options[index][3]);
 
+            timer.start(); //lancement du timer à chaque quetions
+        }
     }
 
     public void displayAnswer()
     {
+        timer.stop(); // arrêt du timer
 
+        this.btnA.setEnabled(false); 
+        this.btnB.setEnabled(false);
+        this.btnC.setEnabled(false);
+        this.btnD.setEnabled(false);  
+
+        if(this.answers[this.index] != 'A')
+        {
+            this.lblA.setForeground(new Color(255,20,0));
+        }
+
+        if(this.answers[this.index] != 'B')
+        {
+            this.lblB.setForeground(new Color(255,20,0));
+        }
+
+        if(this.answers[this.index] != 'C')
+        {
+            this.lblC.setForeground(new Color(255,20,0));
+        }
+
+        if(this.answers[this.index] != 'D')
+        {
+            this.lblD.setForeground(new Color(255,20,0));
+        }
+
+        Timer pause = new Timer(2000, new ActionListener() 
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                lblA.setForeground(new Color(25,255,0));
+                lblB.setForeground(new Color(25,255,0));
+                lblC.setForeground(new Color(25,255,0));
+                lblD.setForeground(new Color(25,255,0));
+
+                answer = ' ';
+                seconds = 10;
+                lblSec.setText(String.valueOf(seconds));
+
+                btnA.setEnabled(true); 
+                btnB.setEnabled(true);
+                btnC.setEnabled(true);
+                btnD.setEnabled(true);
+
+                index++;
+                nextQuestion();
+
+            }
+        });
+        pause.setRepeats(false);
+        pause.start(); 
     }
 
     public void results()
     {
+        this.btnA.setEnabled(false); 
+        this.btnB.setEnabled(false);
+        this.btnC.setEnabled(false);
+        this.btnD.setEnabled(false);
 
+        this.result = (int)((this.correctGuesses/(double)this.totalQuestions)*100);
+
+        this.txtfield.setText("RESULTATS!");
+        this.txtArea.setText("");
+        this.lblA.setText("");
+        this.lblB.setText("");
+        this.lblC.setText("");
+        this.lblD.setText("");
+
+        this.nbRight.setText("(" + this.correctGuesses + "/" + this.totalQuestions + ")");
+        this.pourcent.setText(this.result + "%");
+
+        this.frame.add(this.pourcent);
+        this.frame.add(this.nbRight);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public void actionPerformed(ActionEvent e) 
+    {
+        this.btnA.setEnabled(false); 
+        this.btnB.setEnabled(false);
+        this.btnC.setEnabled(false);
+        this.btnD.setEnabled(false);   
+
+        if (e.getSource()==this.btnA)
+        {
+            this.answer='A';
+            if(this.answer == this.answers[index])
+            {
+                this.correctGuesses++;
+            }
+        }
+
+        if (e.getSource()==this.btnB)
+        {
+            this.answer='B';
+            if(this.answer == this.answers[index])
+            {
+                this.correctGuesses++;
+            }
+        }
+
+        if (e.getSource()==this.btnC)
+        {
+            this.answer='C';
+            if(this.answer == this.answers[index])
+            {
+                this.correctGuesses++;
+            }
+        }
+
+        if (e.getSource()==this.btnD)
+        {
+            this.answer='D';
+            if(this.answer == this.answers[index])
+            {
+                this.correctGuesses++;
+            }
+        }
+
+        this.displayAnswer();
         
     }
 
