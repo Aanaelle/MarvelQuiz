@@ -1,6 +1,7 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 
 public class Quiz implements ActionListener
 {
@@ -139,12 +140,31 @@ public class Quiz implements ActionListener
         this.lblTime.setBounds(535,475,100,25);
         this.lblTime.setBackground(new Color(50,50,50));
         this.lblTime.setForeground(new Color(255,150,23));
-        this.lblTime.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+        this.lblTime.setFont(new Font("Times New Roman", Font.PLAIN, 16));
         this.lblTime.setHorizontalAlignment(JTextField.CENTER);
+        this.lblTime.setText("timer");
 
+        //label réponse corrects
+        this.nbRight.setBounds(225,225,200,100);
+        this.nbRight.setBackground(new Color(25,25,25));
+        this.nbRight.setForeground(new Color(25,255,150));
+        this.nbRight.setFont(new Font("Ink Free", Font.BOLD, 50));
+        this.nbRight.setBorder(BorderFactory.createBevelBorder(1));
+        this.nbRight.setHorizontalAlignment(JTextField.CENTER);
+        this.nbRight.setEditable(false);
+        
+        //label pourcentage
+        this.pourcent.setBounds(225,325,200,100);
+        this.pourcent.setBackground(new Color(25,25,25));
+        this.pourcent.setForeground(new Color(25,255,150));
+        this.pourcent.setFont(new Font("Ink Free", Font.BOLD, 50));
+        this.pourcent.setBorder(BorderFactory.createBevelBorder(1));
+        this.pourcent.setHorizontalAlignment(JTextField.CENTER);
+        this.pourcent.setEditable(false);
 
 
         //positionnement des composants
+        this.frame.add(this.lblTime);
         this.frame.add(this.lblSec);
 
         this.frame.add(this.lblA);
