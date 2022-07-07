@@ -1,3 +1,4 @@
+//@author Anaëlle Mimifir
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
@@ -9,22 +10,28 @@ public class Quiz implements ActionListener
                                     "De qui Loki est-il le frere ?",
                                     "Comment s'appelle la planete de Thor ?",
                                     "Dans quelle team se trouve Black Widow(Natasha) ?",
-                                    "Comment se nomme le marteau de Thor ?"
+                                    "Comment se nomme le marteau de Thor ?",
+                                    "De quelle couleur est Gamora ?"
                                    };
+
     private String[][] options   = {
                                     {"Temps", "Esprit", "Realite", "Espace" },
                                     {"Tony Stark", "Clint Barton", "Thor", "Heimdall"},
                                     {"Asgard", "Sakaar", "Terre", "Xandar"},
                                     {"Iron Man", "Captain America", "Les deux", "Aucune"},
-                                    {"Mjölnir", "MewMew", "Jonathan", "Miljonir"}
+                                    {"Mjölnir", "MewMew", "Jonathan", "Miljonir"},
+                                    {"Jaune", "Bleue", "Verte", "Violette"}
                                    };
+
     private char[]     answers = {
                                 'B', 
                                 'C', 
                                 'A',
                                 'C',
-                                'A'
+                                'A',
+                                'C'
                                  };
+
     private char answer;
     private int  index;
     private int  correctGuesses = 0;
@@ -46,7 +53,6 @@ public class Quiz implements ActionListener
     private JLabel     lblC     = new JLabel();
     private JLabel     lblD     = new JLabel();
 
-    private JLabel     lblTime  = new JLabel();
     private JLabel     lblSec   = new JLabel();
 
     private JTextField nbRight  = new JTextField();
@@ -72,7 +78,7 @@ public class Quiz implements ActionListener
     {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.setSize(650,650);
-        this.frame.getContentPane().setBackground(new Color(50,50,50));
+        this.frame.getContentPane().setBackground(new Color(242,244,244));
         this.frame.setLayout(null);
         this.frame.setResizable(false);
 
@@ -102,43 +108,47 @@ public class Quiz implements ActionListener
         this.btnA.setFont(new Font("MV Boli", Font.BOLD, 35));
         this.btnA.setFocusable(false);
         this.btnA.addActionListener(this);
+        this.btnA.setBackground(new Color(153,163,164));
 
         this.btnB.setBounds(0, 200, 100,100);
         this.btnB.setFont(new Font("MV Boli", Font.BOLD, 35));
         this.btnB.setFocusable(false);
         this.btnB.addActionListener(this);
+        this.btnB.setBackground(new Color(153,163,164));
 
         this.btnC.setBounds(0, 300, 100,100);
         this.btnC.setFont(new Font("MV Boli", Font.BOLD, 35));
         this.btnC.setFocusable(false);
         this.btnC.addActionListener(this);
+        this.btnC.setBackground(new Color(153,163,164));
 
         this.btnD.setBounds(0, 400, 100,100);
         this.btnD.setFont(new Font("MV Boli", Font.BOLD, 35));
         this.btnD.setFocusable(false);
         this.btnD.addActionListener(this);
+        this.btnD.setBackground(new Color(153,163,164));
 
 
         //création des labels
         this.lblA.setBounds(125, 100, 500, 100);
-        this.lblA.setBackground(new Color(50,50,50));
-        this.lblA.setForeground(new Color(45,21,140));
+        this.lblA.setBackground(new Color(242,244,244));
+        this.lblA.setForeground(new Color(88,214,141));
         this.lblA.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
 
 
         this.lblB.setBounds(125, 200, 500, 100);
-        this.lblB.setBackground(new Color(50,50,50));
-        this.lblB.setForeground(new Color(45,21,140));
+        this.lblB.setBackground(new Color(242,244,244));
+        this.lblB.setForeground(new Color(88,214,141));
         this.lblB.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
 
         this.lblC.setBounds(125, 300, 500, 100);
-        this.lblC.setBackground(new Color(50,50,50));
-        this.lblC.setForeground(new Color(45,21,140));
+        this.lblC.setBackground(new Color(242,244,244));
+        this.lblC.setForeground(new Color(88,214,141));
         this.lblC.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
 
         this.lblD.setBounds(125, 400, 500, 100);
-        this.lblD.setBackground(new Color(50,50,50));
-        this.lblD.setForeground(new Color(45,21,140));
+        this.lblD.setBackground(new Color(242,244,244));;
+        this.lblD.setForeground(new Color(88,214,141));
         this.lblD.setFont(new Font("MV Boli", Font.PLAIN, 35 ));
 
         //timer
@@ -151,14 +161,6 @@ public class Quiz implements ActionListener
         this.lblSec.setHorizontalAlignment(JTextField.CENTER);
         this.lblSec.setText(String.valueOf(this.seconds));
 
-
-        //label temps
-        this.lblTime.setBounds(535,475,100,25);
-        this.lblTime.setBackground(new Color(50,50,50));
-        this.lblTime.setForeground(new Color(255,150,23));
-        this.lblTime.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-        this.lblTime.setHorizontalAlignment(JTextField.CENTER);
-        this.lblTime.setText("timer");
 
         //label réponse corrects
         this.nbRight.setBounds(225,225,200,100);
@@ -180,7 +182,6 @@ public class Quiz implements ActionListener
 
 
         //positionnement des composants
-        this.frame.add(this.lblTime);
         this.frame.add(this.lblSec);
 
         this.frame.add(this.lblA);
@@ -255,10 +256,10 @@ public class Quiz implements ActionListener
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                lblA.setForeground(new Color(25,255,0));
-                lblB.setForeground(new Color(25,255,0));
-                lblC.setForeground(new Color(25,255,0));
-                lblD.setForeground(new Color(25,255,0));
+                lblA.setForeground(new Color(88,214,141));
+                lblB.setForeground(new Color(88,214,141));
+                lblC.setForeground(new Color(88,214,141));
+                lblD.setForeground(new Color(88,214,141));
 
                 answer = ' ';
                 seconds = 10;
