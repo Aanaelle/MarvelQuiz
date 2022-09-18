@@ -5,4 +5,4 @@
  
  Le but : répondre à une sélection de questions sur l'univers Marvel.
  
- auteure : Anaëlle Mimifir
+Anaëlle Mimifir
