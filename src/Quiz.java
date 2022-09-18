@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class Quiz implements ActionListener
 {
+    //Tableau des questions
     private String[]   questions = {
                                     "Quelle pierre se trouve sur Vision ?",
                                     "De qui Loki est-il le frere ?",
@@ -14,6 +15,7 @@ public class Quiz implements ActionListener
                                     "De quelle couleur est Gamora ?"
                                    };
 
+    //Tableau des choix de réponse pour chaque question
     private String[][] options   = {
                                     {"Temps", "Esprit", "Realite", "Espace" },
                                     {"Tony Stark", "Clint Barton", "Thor", "Heimdall"},
@@ -23,6 +25,7 @@ public class Quiz implements ActionListener
                                     {"Jaune", "Bleue", "Verte", "Violette"}
                                    };
 
+    //Tableau des bonnes réponses
     private char[]     answers = {
                                 'B', 
                                 'C', 
@@ -60,7 +63,7 @@ public class Quiz implements ActionListener
 
     Timer timer = new Timer(1000, new ActionListener() 
     {
-
+        //Mise en place d'un timer de 10 sec pour chaque questions
         @Override
         public void actionPerformed(ActionEvent e)
         {
@@ -171,7 +174,7 @@ public class Quiz implements ActionListener
         this.nbRight.setHorizontalAlignment(JTextField.CENTER);
         this.nbRight.setEditable(false);
         
-        //label pourcentage
+        //label pourcentage de bonne réponse
         this.pourcent.setBounds(225,325,200,100);
         this.pourcent.setBackground(new Color(25,25,25));
         this.pourcent.setForeground(new Color(25,255,150));
@@ -254,7 +257,7 @@ public class Quiz implements ActionListener
         {
 
             @Override
-            public void actionPerformed(ActionEvent e)
+            public void actionPerformed(ActionEvent e) //remet l'affichage par défaut à chaque nouvelle question
             {
                 lblA.setForeground(new Color(88,214,141));
                 lblB.setForeground(new Color(88,214,141));
@@ -286,7 +289,7 @@ public class Quiz implements ActionListener
         this.btnC.setEnabled(false);
         this.btnD.setEnabled(false);
 
-        this.result = (int)((this.correctGuesses/(double)this.totalQuestions)*100);
+        this.result = (int)((this.correctGuesses/(double)this.totalQuestions)*100); //résultat en %
 
         this.txtfield.setText("RESULTATS!");
         this.txtArea.setText("");
